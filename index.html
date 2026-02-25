@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年央视春晚科技元素全维度深度调研报告</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a237e;
+            --secondary: #c62828;
+            --accent: #ff6f00;
+            --bg-dark: #0d1b2a;
+            --bg-card: #1b263b;
+            --text-primary: #e0e1dd;
+            --text-secondary: #778da9;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(245, 87, 108, 0.15) 0%, transparent 50%),
+                var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.5);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #667eea;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a8b2d1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* 内容区域 */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 111, 0, 0.15);
+            border: 1px solid rgba(255, 111, 0, 0.4);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a8b2d1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon.ai {
+            background: var(--gradient-1);
+        }
+
+        .card-icon.robot {
+            background: var(--gradient-2);
+        }
+
+        .card-icon.xr {
+            background: var(--gradient-3);
+        }
+
+        .card-icon.digital {
+            background: var(--gradient-4);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .chart {
+            width: 100%;
+            height: 400px;
+        }
+
+        /* 数据表格 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-primary);
+        }
+
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-1);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 3px solid #667eea;
+            margin-left: -5px;
+        }
+
+        .timeline-period {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-content {
+            color: var(--text-secondary);
+        }
+
+        /* 战略卡片 */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .strategy-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card.priority-high {
+            border-color: rgba(198, 40, 40, 0.5);
+        }
+
+        .strategy-card.priority-medium {
+            border-color: rgba(255, 111, 0, 0.5);
+        }
+
+        .strategy-card.priority-low {
+            border-color: rgba(67, 233, 123, 0.5);
+        }
+
+        .priority-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .priority-high .priority-badge {
+            background: rgba(198, 40, 40, 0.2);
+            color: #ef5350;
+        }
+
+        .priority-medium .priority-badge {
+            background: rgba(255, 111, 0, 0.2);
+            color: #ffa726;
+        }
+
+        .priority-low .priority-badge {
+            background: rgba(67, 233, 123, 0.2);
+            color: #66bb6a;
+        }
+
+        /* 项目卡片 */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .project-investment {
+            padding: 0.5rem 1rem;
+            background: var(--gradient-1);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .project-modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .module-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .module-name {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .module-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* 风险矩阵 */
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .risk-item {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border-left: 4px solid;
+        }
+
+        .risk-high {
+            border-left-color: #ef5350;
+        }
+
+        .risk-medium {
+            border-left-color: #ffa726;
+        }
+
+        .risk-low {
+            border-left-color: #66bb6a;
+        }
+
+        .risk-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .risk-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .risk-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .risk-impact,
+        .risk-probability {
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* 滚动动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart {
+                height: 300px;
+            }
+
+            .data-table {
+                font-size: 0.8rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.6rem;
+            }
+        }
+
+        /* 两列布局 */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        /* 指标卡片 */
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+
+        /* Tooltip 样式 */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            border-bottom: 1px dashed var(--accent);
+        }
+
+        .tooltip-container .tooltip-text {
+            visibility: hidden;
+            width: 320px;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: -10px;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            font-weight: normal;
+            line-height: 1.5;
+            text-transform: none;
+        }
+
+        .tooltip-container .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--bg-card) transparent transparent transparent;
+        }
+
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+    <base target="_blank">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">2026春晚科技调研报告及战略建议</div>
+            <ul class="nav-links">
+                <li><a href="#overview">概览</a></li>
+                <li><a href="#technology">科技元素</a></li>
+                <li><a href="#companies">企业图谱</a></li>
+                <li><a href="#trends">文旅产业趋势</a></li>
+                <li><a href="#strategy">集团科技战略</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="overview">
+        <div class="hero-content">
+            <div class="hero-badge">江西新和源控股集团 · 战略研究报告</div>
+            <h1>2026年央视春晚<br>科技元素全维度深度调研</h1>
+            <p class="hero-subtitle" style="text-align: center;">中国文娱产业进入"AI原生时代"的重要转折点，七大科技领域突破性应用全景解析</p>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">核心科技领域</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">机器人企业同台</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">上市公司参与</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10亿+</div>
+                    <div class="stat-label">春晚观众覆盖</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心发现 -->
+    <section class="section" id="findings">
+        <div class="section-header fade-in">
+            <div class="section-tag">Executive Summary</div>
+            <h2>核心发现与战略启示</h2>
+            <p class="section-desc">2026春晚标志着中国文娱产业进入"AI原生时代"，科技+文化深度融合成为核心特征</p>
+        </div>
+
+        <div class="card-grid fade-in">
+            <div class="card">
+                <div class="card-icon ai">🤖</div>
+                <h3>AI原生时代来临</h3>
+                <p>字节跳动<a href="https://www.volcengine.com/" target="_blank"
+                        style="color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent);">火山引擎</a>作为独家AI云合作伙伴，Seedance
+                    2.0实现全球首个春晚AI视频生成模型商业化应用，标志着国产大模型在超大规模场景下的成熟度达到新高度。</p>
+                <div class="card-tags">
+                    <span class="tag">豆包大模型</span>
+                    <span class="tag">Seedance 2.0</span>
+                    <span class="tag">AIGC</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon robot">🔧</div>
+                <h3>机器人产业爆发</h3>
+                <p><a href="https://www.unitree.com/" target="_blank"
+                        style="color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent);">宇树科技</a>三度登台，魔法原子、<a
+                        href="https://www.galaxea.ai/" target="_blank"
+                        style="color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent);">银河通用</a>、松延动力首次亮相，四家企业同台竞技，标志着国产人形机器人从"技术验证"进入"场景应用"阶段。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">宇树科技</span>
+                    <span class="tag">魔法原子</span>
+                    <span class="tag">具身智能</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon xr">🥽</div>
+                <h3>XR技术成熟应用</h3>
+                <p><a href="https://www.unilumin.cn/" target="_blank"
+                        style="color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent);">洲明科技</a>主导XR显示系统，覆盖5+核心节目，AIGC+XR融合创新，实现零闪烁零断点的直播安全保障，技术可靠性达到国家级应用标准。
+                </p>
+                <div class="card-tags">
+                    <span class="tag">洲明科技</span>
+                    <span class="tag">LED+AI+XR</span>
+                    <span class="tag">沉浸式体验</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon digital">👤</div>
+                <h3>数字人技术突破</h3>
+                <p>《梦底》超写实数字人首次融入春晚，光场采集技术构建高精度动态三维模型，数字分身与真人演员同台共舞，真假难辨。</p>
+                <div class="card-tags">
+                    <span class="tag">超写实数字人</span>
+                    <span class="tag">光场采集</span>
+                    <span class="tag">实时渲染</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container fade-in" style="margin-top: 3rem;">
+            <div class="chart-title">春晚科技元素全景图谱</div>
+            <div id="techRadarChart" class="chart"></div>
+        </div>
+    </section>
+
+    <!-- 科技元素详解 -->
+    <section class="section" id="technology">
+        <div class="section-header fade-in">
+            <div class="section-tag">Technology Breakdown</div>
+            <h2>七大科技领域深度拆解</h2>
+            <p class="section-desc">从AI人工智能到低空经济，全方位解析春晚科技应用</p>
+        </div>
+
+        <div class="two-column fade-in">
+            <div class="chart-container">
+                <div class="chart-title">AI技术应用分布</div>
+                <div id="aiChart" class="chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">机器人企业春晚表现</div>
+                <div id="robotChart" class="chart"></div>
+            </div>
+        </div>
+
+        <div class="chart-container fade-in" style="margin-top: 2rem;">
+            <div class="chart-title">XR/AR技术应用节目覆盖</div>
+            <div id="xrChart" class="chart" style="height: 350px;"></div>
+        </div>
+
+        <div class="card-grid fade-in" style="margin-top: 3rem;">
+            <div class="card">
+                <h3>🎬 超高清制播技术</h3>
+                <p>8K超高清制播全链路国产化，HDR Vivid标准峰值亮度提升40倍，建立自主可控的超高清产业生态，摆脱对国外技术的依赖。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            8K</div>
+                        <div class="metric-label">超高清制播</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            40x</div>
+                        <div class="metric-label">亮度提升</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            全链路</div>
+                        <div class="metric-label">国产化</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>☁️ 互动与云技术</h3>
+                <p>华为Mate80系列首次竖屏直播，云端渲染互动让观众上传新年愿望生成AR烟花，分布式算力节点支撑海量并发。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            首次</div>
+                        <div class="metric-label">竖屏直播</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            云端</div>
+                        <div class="metric-label">实时渲染</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            分布式</div>
+                        <div class="metric-label">算力节点</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📽️ Seedance 2.0 生态</h3>
+                <p>字节跳动自主研发的AI视频生成大模型，全球首次在国家级晚会商业化应用，完成《驭风歌》水墨画动态演绎及《贺花神》特效，超越传统渲染速度。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            全球首发</div>
+                        <div class="metric-label">国家级应用</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            物理仿真</div>
+                        <div class="metric-label">高一致性</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>✨ 冰屏与舞台光影</h3>
+                <p>舞台部署八块可自由升降透明冰屏与270°环绕地屏，结合数控机械和红外追踪智能算法，实现“屏中屏”多层次虚实融合光影舞蹈。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            8块</div>
+                        <div class="metric-label">智能升降冰屏</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            270°</div>
+                        <div class="metric-label">环绕沉浸地屏</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 企业图谱 -->
+    <section class="section" id="companies">
+        <div class="section-header fade-in">
+            <div class="section-tag">Enterprise Ecosystem</div>
+            <h2>参与企业与技术提供方图谱</h2>
+            <p class="section-desc">8家上市公司深度参与，科技企业与传统产业加速融合</p>
+        </div>
+
+        <div class="chart-container fade-in">
+            <div class="chart-title">核心技术企业矩阵</div>
+            <div id="companyChart" class="chart" style="height: 500px;"></div>
+        </div>
+
+        <div class="chart-container fade-in" style="margin-top: 2rem;">
+            <div class="chart-title">上市公司合作分布</div>
+            <div id="listedChart" class="chart"></div>
+        </div>
+
+        <div class="chart-container fade-in" style="margin-top: 2rem;">
+            <div class="chart-title">合作成本与权益分析</div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>合作类型</th>
+                        <th>报价区间</th>
+                        <th>权益内容</th>
+                        <th>适合企业</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>机器人企业合作权益</td>
+                        <td>6000万元 - 1亿元</td>
+                        <td>产品展示、品牌露出、技术演示</td>
+                        <td>科技创新企业</td>
+                    </tr>
+                    <tr>
+                        <td>独家技术合作伙伴</td>
+                        <td>高达5亿元</td>
+                        <td>独家技术合作伙伴身份、全场景应用</td>
+                        <td>头部科技企业</td>
+                    </tr>
+                    <tr>
+                        <td>生态级合作</td>
+                        <td>数亿元</td>
+                        <td>全生态产品展示、深度内容植入</td>
+                        <td>综合型集团</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="chart-container fade-in" style="margin-top: 2rem;">
+            <div class="chart-title">参与企业 ROI 评估框架</div>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.95rem;">
+                基于头部企业历年参加春晚的数据调研，我们推导出了以下四个维度的投资回报评估体系：</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>评估维度</th>
+                        <th>核心指标</th>
+                        <th>建议权重</th>
+                        <th>备注说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: #667eea; font-weight: 600;">品牌曝光</td>
+                        <td>触达10亿+人次、媒体传播等价价值</td>
+                        <td>30%</td>
+                        <td>国家级背书极大提升B端客户与C端消费者信任度</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #f5576c; font-weight: 600;">技术验证</td>
+                        <td>恶劣并发环境下的高可靠性系统压测案例</td>
+                        <td>25%</td>
+                        <td>为后续同类型商业化应用、招投标积累硬核案例</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #4facfe; font-weight: 600;">商业转化</td>
+                        <td>直播线索转化量、跨行业直接订单达成</td>
+                        <td>25%</td>
+                        <td>通过"边看边播"带货、同款概念引发的实质利润回笼</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #43e97b; font-weight: 600;">资本价值</td>
+                        <td>估值溢价提升、私募与公开市场融资信誉</td>
+                        <td>20%</td>
+                        <td>科技企业凭借登台常获得新一轮高估值注资</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 行业趋势 -->
+    <section class="section" id="trends">
+        <div class="section-header fade-in">
+            <div class="section-tag">Industry Trends</div>
+            <h2>行业趋势研判</h2>
+            <p class="section-desc">AI全栈式赋能、人机协同、沉浸式体验产业前景深度分析</p>
+        </div>
+
+        <div class="two-column fade-in">
+            <div class="chart-container">
+                <div class="chart-title">AI+文娱市场规模预测（2026年）</div>
+                <div id="aiMarketChart" class="chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">沉浸式体验产业市场规模</div>
+                <div id="immersiveChart" class="chart"></div>
+            </div>
+        </div>
+
+        <div class="chart-container fade-in" style="margin-top: 2rem;">
+            <div class="chart-title">AI+文旅融合应用场景</div>
+            <div id="aiTravelChart" class="chart" style="height: 350px;"></div>
+        </div>
+
+        <div class="card-grid fade-in" style="margin-top: 3rem;">
+            <div class="card">
+                <h3>📈 文娱科技发展趋势</h3>
+                <p>AI全栈式赋能成为核心驱动力，文生视频工具进入筛选聚拢期，全流程AI制作快速投入生产，平台型企业获得超额收益。</p>
+                <div class="card-tags">
+                    <span class="tag">文生视频</span>
+                    <span class="tag">电子演员</span>
+                    <span class="tag">AI动画</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🎭 舞台科技演进方向</h3>
+                <p>AI驱动的全场景智能化控制，虚实融合的沉浸式灯光生态，碳中和目标下的绿色灯光革命正在重塑舞台美学。</p>
+                <div class="card-tags">
+                    <span class="tag">智能控制</span>
+                    <span class="tag">XR融合</span>
+                    <span class="tag">绿色科技</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🚁 低空经济新增长点</h3>
+                <p><span class="tooltip-container">eVTOL<span class="tooltip-text">全称 Electric Vertical Takeoff and
+                            Landing，即电动垂直起降飞行器。它靠电力驱动，能像直升机一样垂直起降，无需长跑道，同时噪音更低、更环保。</span></span>观光成为载人<span
+                        class="tooltip-container">eVTOL<span class="tooltip-text">全称 Electric Vertical Takeoff and
+                            Landing，即电动垂直起降飞行器。它靠电力驱动，能像直升机一样垂直起降，无需长跑道，同时噪音更低、更环保。</span></span>最直观且易推广的场景，低空文旅预计2026年市场规模达100亿元，增长率80%。
+                </p>
+                <div class="card-tags">
+                    <span class="tag tooltip-container" style="border-bottom:none; cursor:help;">eVTOL<span
+                            class="tooltip-text">全称 Electric Vertical Takeoff and
+                            Landing，即电动垂直起降飞行器。它靠电力驱动，能像直升机一样垂直起降，无需长跑道，同时噪音更低、更环保。</span></span>
+                    <span class="tag">低空观光</span>
+                    <span class="tag">低空物流</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 战略规划 -->
+    <section class="section" id="strategy">
+        <div class="section-header fade-in">
+            <div class="section-tag">Strategic Planning</div>
+            <h2>江西新和源控股集团科技板块战略规划建议</h2>
+            <p class="section-desc">科技赋能传统产业，打造区域文旅科技标杆</p>
+        </div>
+
+        <div class="chart-container fade-in">
+            <div class="chart-title">战略目标与关键指标</div>
+            <div id="strategyChart" class="chart" style="height: 400px;"></div>
+        </div>
+
+        <div class="section-header fade-in" style="margin-top: 4rem;">
+            <h2 style="font-size: 2rem;">宏观三阶段发展路径规划</h2>
+        </div>
+
+        <div class="timeline fade-in">
+            <div class="timeline-item">
+                <div class="timeline-period">短期（1-2年内）</div>
+                <div class="timeline-title">青源汇试点与首店抢位</div>
+                <div class="timeline-content">
+                    <p>全力推进世茂水城·青源汇"首店首展"落地，迅速引入春晚同款人形机器人、机器狗及XR穿戴设备等引流利器，打响南昌科技商业第一枪。</p>
+                    <p style="margin-top: 0.5rem; color: var(--accent);">投资预算：1500-3000万元</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-period">中期（2-3年）</div>
+                <div class="timeline-title">多业态规模化赋能</div>
+                <div class="timeline-content">
+                    <p>以青源汇为创新标杆，将成功验证的AI、XR与数字人技术，向富庭苑智慧酒店、先锋农业电商等集团核心板块全面复制渗透。</p>
+                    <p style="margin-top: 0.5rem; color: var(--accent);">投资预算：5000-8000万元 | 实现跨业态营收突破8000万元</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-period">长期（3-5年）</div>
+                <div class="timeline-title">集团数字资产生态构建</div>
+                <div class="timeline-content">
+                    <p>打通青源汇商业、智慧酒店、农业供应链的底层数据，投资孵化上下游科技企业，构建新和源专属的“科技+文商旅农”闭环生态圈。</p>
+                    <p style="margin-top: 0.5rem; color: var(--accent);">投资预算：2-5亿元 | 生态总估值显著提升，科技板块酝酿独立资本化</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 首位核心标杆项目 -->
+        <div class="highlight-banner fade-in"
+            style="margin-top: 3rem; margin-bottom: 4rem; background: linear-gradient(135deg, rgba(26, 35, 126, 0.2) 0%, rgba(27, 38, 59, 0.9) 100%); border-radius: 24px; padding: 3rem; border: 1px solid rgba(102, 126, 234, 0.3); box-shadow: 0 15px 35px rgba(0,0,0,0.4); position: relative; overflow: hidden;">
+            <div
+                style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: var(--gradient-1); filter: blur(120px); opacity: 0.4; border-radius: 50%;">
+            </div>
+
+            <div class="section-tag"
+                style="margin-bottom: 1.5rem; display: inline-block; border-color: var(--accent); color: var(--accent); background: rgba(255, 111, 0, 0.1);">
+                核心战略桥头堡</div>
+            <h2
+                style="font-size: 2.4rem; margin-bottom: 1.2rem; background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                世茂水城·青源汇 —— AI科技与商业融合示范旗舰</h2>
+            <p
+                style="color: var(--text-secondary); font-size: 1.15rem; max-width: 900px; margin-bottom: 3rem; line-height: 1.8;">
+                作为集团科技转型的首个落地应用场，青源汇将全国首创引入央视春晚级别的AI前沿机器人、XR沉浸视听与光影技术，彻底打破线上线下边界，实现传统商业地产向"未来科技文商旅综合体"的跨越式破局。</p>
+
+            <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div class="card"
+                    style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); box-shadow: none;">
+                    <div class="card-icon" style="font-size: 2.8rem; color: #4facfe;">🤖</div>
+                    <h3 style="margin-top: 1.2rem; font-size: 1.3rem;">超级引流：AI机器人首店经济</h3>
+                    <p style="margin-top: 1rem; font-size: 1rem; color: var(--text-primary); line-height: 1.6;">
+                        部署包括宇树科技机器狗、优必选等春晚同款高端服务机器人，结合AI虚实双重导购，打造江西绝无仅有的硬核科技"首店"，强力锁定Z世代年轻群体社交驻点。</p>
+                    <div class="card-tags" style="margin-top: 1.8rem;">
+                        <span class="tag"
+                            style="background: rgba(79, 172, 254, 0.1); border: 1px solid rgba(79, 172, 254, 0.3); color: #4facfe;">智能硬核首展</span>
+                        <span class="tag"
+                            style="background: rgba(79, 172, 254, 0.1); border: 1px solid rgba(79, 172, 254, 0.3); color: #4facfe;">虚实导购融合</span>
+                    </div>
+                </div>
+
+                <div class="card"
+                    style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); box-shadow: none;">
+                    <div class="card-icon" style="font-size: 2.8rem; color: #f5576c;">🌌</div>
+                    <h3 style="margin-top: 1.2rem; font-size: 1.3rem;">跨域引爆：XR沉浸式夜经济环</h3>
+                    <p style="margin-top: 1rem; font-size: 1rem; color: var(--text-primary); line-height: 1.6;">
+                        完整复刻春晚级光影大秀与无人机矩阵，深度赋能全景电竞大厅与剧本杀街区，冲破物理时间束缚，重塑南昌独树一帜的"24小时娱乐能量场"。</p>
+                    <div class="card-tags" style="margin-top: 1.8rem;">
+                        <span class="tag"
+                            style="background: rgba(245, 87, 108, 0.1); border: 1px solid rgba(245, 87, 108, 0.3); color: #f5576c;">沉浸光影视听</span>
+                        <span class="tag"
+                            style="background: rgba(245, 87, 108, 0.1); border: 1px solid rgba(245, 87, 108, 0.3); color: #f5576c;">全时段电竞圈</span>
+                    </div>
+                </div>
+
+                <div class="card"
+                    style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); box-shadow: none;">
+                    <div class="card-icon" style="font-size: 2.8rem; color: #43e97b;">🎨</div>
+                    <h3 style="margin-top: 1.2rem; font-size: 1.3rem;">情绪共振：AIGC文创潮玩域</h3>
+                    <p style="margin-top: 1rem; font-size: 1rem; color: var(--text-primary); line-height: 1.6;">
+                        注入春晚"AI大模型原景生成"等内核，让消费终端秒变"共创营"——支持消费者AI辅助定制文创盲盒及生成专有音乐，用顶级情绪价值筑起商业护城河。</p>
+                    <div class="card-tags" style="margin-top: 1.8rem;">
+                        <span class="tag"
+                            style="background: rgba(67, 233, 123, 0.1); border: 1px solid rgba(67, 233, 123, 0.3); color: #43e97b;">AIGC即刻定制</span>
+                        <span class="tag"
+                            style="background: rgba(67, 233, 123, 0.1); border: 1px solid rgba(67, 233, 123, 0.3); color: #43e97b;">主理人生态链</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header fade-in" style="margin-top: 4rem;">
+            <h2 style="font-size: 2rem;">【1+N】全链路产业生态扩容点</h2>
+            <p class="section-desc">以青源汇为标杆，向新和源集团旗下酒店、农业、商业地产等核心资产的全面科技赋能与降本增效延展</p>
+        </div>
+
+        <div class="card-grid fade-in">
+            <div class="card" style="position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--gradient-1); filter: blur(80px); opacity: 0.15; border-radius: 50%;">
+                </div>
+                <div class="card-icon" style="font-size: 2rem;">🏨</div>
+                <h3 style="margin-top: 0.5rem;">酒店业务 + 科技</h3>
+                <p>以富庭苑国际酒店为创新试点，全面引入AI智慧系统，逐步落地服务机器人体系与虚拟数字人前台接待。</p>
+                <ul
+                    style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-secondary); font-size: 0.95rem; margin-top: 1rem;">
+                    <li><strong style="color: var(--text)">智慧酒店系统：</strong>AI全能客服、智能无感入住 <span
+                            style="color: #43e97b;">(降本 20%)</span></li>
+                    <li><strong style="color: var(--text)">服务机器人系：</strong>餐饮送递、全天候导览与清洁 <span
+                            style="color: #43e97b;">(提效 30%)</span></li>
+                    <li><strong style="color: var(--text)">数字人前台：</strong>多语种高度拟真前台24小时服务 <span
+                            style="color: #43e97b;">(省力 15%)</span></li>
+                </ul>
+            </div>
+
+            <div class="card" style="position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--gradient-1); filter: blur(80px); opacity: 0.15; border-radius: 50%;">
+                </div>
+                <div class="card-icon" style="font-size: 2rem;">🌾</div>
+                <h3 style="margin-top: 0.5rem;">农业业务 + 科技</h3>
+                <p>在农业核心基地先锋部署农业机器人，建设新标杆智慧农业示范园区并孵化特色农产品数字人直播电商。</p>
+                <ul
+                    style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-secondary); font-size: 0.95rem; margin-top: 1rem;">
+                    <li><strong style="color: var(--text)">智慧作业终端：</strong>常态化全天候的巡检、采摘 <span
+                            style="color: #4facfe;">(效能↑40%)</span></li>
+                    <li><strong style="color: var(--text)">数字人电商：</strong>不疲倦的虚拟主播赋能农产带货 <span
+                            style="color: #4facfe;">(GMV↑50%)</span></li>
+                    <li><strong style="color: var(--text)">农业大数据：</strong>IoT传感器+AI精准种植模型辅助 <span
+                            style="color: #4facfe;">(成本↓10%)</span></li>
+                </ul>
+            </div>
+
+            <div class="card" style="position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--gradient-1); filter: blur(80px); opacity: 0.15; border-radius: 50%;">
+                </div>
+                <div class="card-icon" style="font-size: 2rem;">🏢</div>
+                <h3 style="margin-top: 0.5rem;">地产业务 + 科技</h3>
+                <p>在新建人居楼盘与商文体项目中深度耦合智慧社区管控中枢与XR沉浸式视听交互，构建科技差异化壁垒。</p>
+                <ul
+                    style="padding-left: 1.5rem; line-height: 1.8; color: var(--text-secondary); font-size: 0.95rem; margin-top: 1rem;">
+                    <li><strong style="color: var(--text)">智慧云端社区：</strong>基于大模型的机器视觉AI安防 <span
+                            style="color: #f5576c;">(溢价 15%)</span></li>
+                    <li><strong style="color: var(--text)">沉浸文商旅：</strong>XR体感娱乐、互动光影装置剧场 <span
+                            style="color: #f5576c;">(底租↑20%)</span></li>
+                    <li><strong style="color: var(--text)">AI数字营销：</strong>高转化虚拟置业顾问、智算匹配 <span
+                            style="color: #f5576c;">(获客降25%)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-header fade-in" style="margin-top: 4rem;">
+            <h2 style="font-size: 2rem;">重点项目建议</h2>
+        </div>
+
+        <div class="fade-in">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">项目一：世茂水城·青源汇 —— AI科技创新型旗舰商业</div>
+                    <div class="project-investment">投资规模：4000万元</div>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    全国首发落地前沿智能科技商业体验，填补南昌高端科技商业空白，构建年轻力消费风向标。</p>
+                <div class="project-modules">
+                    <div class="module-item">
+                        <div class="module-name">智显互动导流区</div>
+                        <div class="module-value">宇树机器狗与人形机器人布展 · 1000万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">XR沉浸式电竞馆</div>
+                        <div class="module-value">光影大秀与无人机夜娱编队 · 1500万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">数智潮玩与音乐现场</div>
+                        <div class="module-value">AI门店定制及音乐交互设备 · 1000万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">数字化共创平台</div>
+                        <div class="module-value">跨次元会员营销系统体系 · 500万元</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; color: var(--accent);">预期收益：整体租金实现145%增幅，年体验票务及零售增量2000万元以上</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">项目二：新和源特色农业·数字人直播电商枢纽</div>
+                    <div class="project-investment">投资规模：1500万元</div>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    基于新和源农业大基座，打造江西首个农产品AI直播电商网格化示范基地，突破传统农产带货痛点。</p>
+                <div class="project-modules">
+                    <div class="module-item">
+                        <div class="module-name">虚拟直播间矩阵</div>
+                        <div class="module-value">20个AI数字人直播间群 · 600万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">品牌IP数字人定制</div>
+                        <div class="module-value">集团级专属农企代言人 · 300万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">智慧化供应链整合</div>
+                        <div class="module-value">源头选品、品控与冷链物流追踪 · 300万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">投流与运营中心</div>
+                        <div class="module-value">全天候内容分发与AI客服支撑 · 300万元</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; color: var(--accent);">预期收益：农产品年GMV突破1.5亿元，供应链服务沉淀及数据资产评估收益超1000万元</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">项目三：富庭苑国际酒店·全场景智慧化升级</div>
+                    <div class="project-investment">投资规模：1200万元</div>
+                </div>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">打造江西省首家全场景、全链路闭环的智慧酒店生态标杆，实现硬件升维与服务越级。</p>
+                <div class="project-modules">
+                    <div class="module-item">
+                        <div class="module-name">无感智能客房系统</div>
+                        <div class="module-value">100间极客智能客房改造 · 500万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">机器人全天候组网</div>
+                        <div class="module-value">送餐、清洁与迎宾机器人协同调度 · 300万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">多语种AI前台</div>
+                        <div class="module-value">数字人智慧前台与同声传译客服 · 200万元</div>
+                    </div>
+                    <div class="module-item">
+                        <div class="module-name">文旅住客数据中台</div>
+                        <div class="module-value">与青源汇会员打通的客户数据底座 · 200万元</div>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; color: var(--accent);">预期收益：人工运营成本降低20%，单房溢价率提升15%，客户NPS（净推荐值）显著领跑全城</p>
+            </div>
+        </div>
+
+        <div class="section-header fade-in" style="margin-top: 4rem;">
+            <h2 style="font-size: 2rem;">风险识别与应对</h2>
+        </div>
+
+        <div class="risk-matrix fade-in">
+            <div class="risk-item risk-high">
+                <div class="risk-title">技术风险</div>
+                <div class="risk-desc">技术迭代快，投资回报不确定</div>
+                <div class="risk-meta">
+                    <span class="risk-impact">影响：高</span>
+                    <span class="risk-probability">概率：中</span>
+                </div>
+            </div>
+
+            <div class="risk-item risk-medium">
+                <div class="risk-title">市场风险</div>
+                <div class="risk-desc">市场接受度不及预期</div>
+                <div class="risk-meta">
+                    <span class="risk-impact">影响：中</span>
+                    <span class="risk-probability">概率：中</span>
+                </div>
+            </div>
+
+            <div class="risk-item risk-high">
+                <div class="risk-title">竞争风险</div>
+                <div class="risk-desc">大型科技企业降维打击</div>
+                <div class="risk-meta">
+                    <span class="risk-impact">影响：高</span>
+                    <span class="risk-probability">概率：高</span>
+                </div>
+            </div>
+
+            <div class="risk-item risk-medium">
+                <div class="risk-title">人才风险</div>
+                <div class="risk-desc">科技人才招聘与留存困难</div>
+                <div class="risk-meta">
+                    <span class="risk-impact">影响：中</span>
+                    <span class="risk-probability">概率：中</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container fade-in" style="margin-top: 2rem;">
+            <div class="chart-title">可行性综合评估</div>
+            <div id="feasibilityChart" class="chart"></div>
+        </div>
+        <div class="section-header fade-in" style="margin-top: 4rem;">
+            <h2 style="font-size: 2rem;">重点锚定的底层科技赛道</h2>
+        </div>
+
+        <div class="strategy-grid fade-in">
+            <div class="strategy-card priority-high">
+                <span class="priority-badge">优先级 ★★★★★</span>
+                <h3>AI+文旅</h3>
+                <p>集团拥有酒店、农业等文旅相关资产，江西是文化资源大省，春晚科技应用提供了成熟的标杆案例。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            500-1000万</div>
+                        <div class="metric-label">数字人导游投资</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            2000-5000万</div>
+                        <div class="metric-label">沉浸式演艺投资</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-card priority-high">
+                <span class="priority-badge">优先级 ★★★★☆</span>
+                <h3>数字人与虚拟IP</h3>
+                <p>数字人直播电商市场爆发，京东23亿元GMV验证商业价值，可服务集团农业产品电商销售。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            100-300万</div>
+                        <div class="metric-label">电商数字人投资</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            500-2000万</div>
+                        <div class="metric-label">年收益预期</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-card priority-high">
+                <span class="priority-badge">优先级 ★★★★☆</span>
+                <h3>XR/沉浸式体验</h3>
+                <p>春晚XR技术展示成熟应用场景，江西红色旅游资源丰富，可与地产项目结合打造沉浸式商业空间。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            3000-8000万</div>
+                        <div class="metric-label">红色文旅XR投资</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            2000-5000万</div>
+                        <div class="metric-label">年收益预期</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-card priority-medium">
+                <span class="priority-badge">优先级 ★★★☆☆</span>
+                <h3>服务机器人</h3>
+                <p>春晚机器人展示成熟技术能力，酒店、农业场景有明确的服务机器人需求，可通过投资或合作方式切入。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            200-500万</div>
+                        <div class="metric-label">酒店机器人投资</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            100-300万</div>
+                        <div class="metric-label">年收益预期</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-card priority-medium">
+                <span class="priority-badge">优先级 ★★★☆☆</span>
+                <h3>低空经济</h3>
+                <p>春晚哈尔滨分会场展示载人飞行器应用，低空文旅是eVTOL最直观的商业场景，江西山水资源丰富。</p>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            5000万-1亿</div>
+                        <div class="metric-label">低空观光投资</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value"
+                            style="font-size: 1.6rem; font-weight: bold; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 20px rgba(245, 87, 108, 0.4);">
+                            3000-8000万</div>
+                        <div class="metric-label">年收益预期</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header fade-in" style="margin-top: 4rem;">
+            <h2 style="font-size: 2rem;">技术对接与合作伙伴图谱</h2>
+            <p class="section-desc">三大核心技术合作拓展方向及明确的战略落地对接点</p>
+        </div>
+
+        <div class="chart-container fade-in">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>重点合作方向</th>
+                        <th>关联技术支撑底座</th>
+                        <th>潜在产业链标杆伙伴</th>
+                        <th>首发主打应用大场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: #667eea; font-weight: 600;">大模型及云基建生态</td>
+                        <td>多模态大语言模型、AIGC内容秒级生成、云边端协同计算</td>
+                        <td>字节火山引擎、百度智能云、阿里云</td>
+                        <td>全维感知智能客服、品效合一内容分发、智慧无缝导游</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #f5576c; font-weight: 600;">超写实数字人资产化</td>
+                        <td>光场微米级动态采集、面部表情实时捕捉、云渲染虚幻引擎</td>
+                        <td>洲明科技、前沿虚拟人MCN及配套研发厂商</td>
+                        <td>7×24农业直播带货网格、集团定制品牌代言、特色文创IP导购</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #4facfe; font-weight: 600;">XR沉浸交互与具身智能</td>
+                        <td>可变拼接LED冰屛矩阵、XR虚拟空间制片、群控协同SLAM算法</td>
+                        <td>宇树科技（具身）、洲明科技（显控）等</td>
+                        <td>红色文化展馆光影洗礼大秀、多元化酒店服务协同调度</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">2026央视春晚科技元素深度调研报告</div>
+            <div class="footer-info">
+                <p>调研员：杜建军</p>
+                <p>报告日期：2026年2月25日</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        if (typeof echarts === 'undefined') {
+            console.error('ECharts script failed to load. Charts will not be completely rendered.');
+        } else {
+
+            // 图表配置
+            const chartTheme = {
+                backgroundColor: 'transparent',
+                textStyle: { color: '#e0e1dd' },
+                title: { textStyle: { color: '#e0e1dd' } },
+                legend: { textStyle: { color: '#778da9' } },
+                tooltip: {
+                    backgroundColor: 'rgba(27, 38, 59, 0.95)',
+                    borderColor: 'rgba(255,255,255,0.1)',
+                    textStyle: { color: '#e0e1dd' }
+                }
+            };
+
+            // 1. 科技元素雷达图
+            const techRadarChart = echarts.init(document.getElementById('techRadarChart'));
+            techRadarChart.setOption({
+                ...chartTheme,
+                radar: {
+                    indicator: [
+                        { name: 'AI人工智能', max: 100 },
+                        { name: '机器人技术', max: 100 },
+                        { name: 'XR/AR/VR', max: 100 },
+                        { name: '数字人技术', max: 100 },
+                        { name: '光影舞台', max: 100 },
+                        { name: '超高清制播', max: 100 },
+                        { name: '互动云技术', max: 100 }
+                    ],
+                    splitArea: {
+                        areaStyle: {
+                            color: ['rgba(102, 126, 234, 0.05)', 'rgba(102, 126, 234, 0.1)']
+                        }
+                    },
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
+                },
+                series: [{
+                    type: 'radar',
+                    data: [{
+                        value: [95, 90, 85, 80, 88, 92, 85],
+                        name: '2026春晚科技应用成熟度',
+                        areaStyle: { color: 'rgba(102, 126, 234, 0.3)' },
+                        lineStyle: { color: '#667eea', width: 2 },
+                        itemStyle: { color: '#667eea' }
+                    }]
+                }]
+            });
+
+            // 2. AI技术应用分布
+            const aiChart = echarts.init(document.getElementById('aiChart'));
+            aiChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'item' },
+                series: [{
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    itemStyle: {
+                        borderRadius: 10,
+                        borderColor: '#1b263b',
+                        borderWidth: 2
+                    },
+                    label: { show: true, color: '#e0e1dd' },
+                    data: [
+                        { value: 35, name: '节目制作层', itemStyle: { color: '#667eea' } },
+                        { value: 25, name: '直播分发层', itemStyle: { color: '#f5576c' } },
+                        { value: 20, name: '用户互动层', itemStyle: { color: '#4facfe' } },
+                        { value: 20, name: '数据分析层', itemStyle: { color: '#43e97b' } }
+                    ]
+                }]
+            });
+
+            // 3. 机器人企业春晚表现
+            const robotChart = echarts.init(document.getElementById('robotChart'));
+            robotChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'axis' },
+                xAxis: {
+                    type: 'category',
+                    data: ['宇树科技', '魔法原子', '银河通用', '松延动力'],
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '技术难度指数',
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: [
+                        { value: 95, itemStyle: { color: '#667eea' } },
+                        { value: 88, itemStyle: { color: '#f5576c' } },
+                        { value: 82, itemStyle: { color: '#4facfe' } },
+                        { value: 78, itemStyle: { color: '#43e97b' } }
+                    ],
+                    barWidth: '50%',
+                    itemStyle: { borderRadius: [8, 8, 0, 0] }
+                }]
+            });
+
+            // 4. XR技术应用节目覆盖
+            const xrChart = echarts.init(document.getElementById('xrChart'));
+            xrChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                legend: { data: ['XR技术', 'AIGC技术', 'AR特效'], textStyle: { color: '#778da9' } },
+                xAxis: {
+                    type: 'category',
+                    data: ['《吉量》', '《智造未来》', '《小家年年》', '《丝路古韵》', '《喜雨》'],
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd', rotate: 15 }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [
+                    {
+                        name: 'XR技术',
+                        type: 'bar',
+                        stack: 'total',
+                        data: [90, 85, 80, 88, 82],
+                        itemStyle: { color: '#667eea' }
+                    },
+                    {
+                        name: 'AIGC技术',
+                        type: 'bar',
+                        stack: 'total',
+                        data: [30, 85, 80, 20, 15],
+                        itemStyle: { color: '#f5576c' }
+                    },
+                    {
+                        name: 'AR特效',
+                        type: 'bar',
+                        stack: 'total',
+                        data: [70, 20, 15, 10, 25],
+                        itemStyle: { color: '#4facfe' }
+                    }
+                ]
+            });
+
+            // 5. 核心技术企业矩阵
+            const companyChart = echarts.init(document.getElementById('companyChart'));
+            companyChart.setOption({
+                ...chartTheme,
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function (params) {
+                        return `<strong>${params.name}</strong><br/>领域：${params.data.category}<br/>技术成熟度：${params.value}%`;
+                    }
+                },
+                series: [{
+                    type: 'treemap',
+                    width: '100%',
+                    height: '100%',
+                    roam: false,
+                    nodeClick: false,
+                    breadcrumb: { show: false },
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return '{name|' + params.name + '}\n{category|领域: ' + params.data.category + '}\n{value|技术成熟度: ' + params.value + '%}';
+                        },
+                        rich: {
+                            name: {
+                                fontSize: 18,
+                                fontWeight: 'bold',
+                                lineHeight: 32,
+                                color: '#ffffff',
+                                textShadowColor: 'rgba(0,0,0,0.5)',
+                                textShadowBlur: 4,
+                                textShadowOffsetY: 2
+                            },
+                            category: {
+                                fontSize: 13,
+                                color: 'rgba(255,255,255,0.9)',
+                                lineHeight: 22,
+                                textShadowColor: 'rgba(0,0,0,0.4)',
+                                textShadowBlur: 4,
+                                textShadowOffsetY: 1
+                            },
+                            value: {
+                                fontSize: 13,
+                                color: 'rgba(255,255,255,0.9)',
+                                lineHeight: 22,
+                                textShadowColor: 'rgba(0,0,0,0.4)',
+                                textShadowBlur: 4,
+                                textShadowOffsetY: 1
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        borderColor: '#1b263b',
+                        borderWidth: 2,
+                        gapWidth: 2
+                    },
+                    levels: [{
+                        itemStyle: {
+                            borderColor: '#1b263b',
+                            borderWidth: 0,
+                            gapWidth: 2
+                        }
+                    }],
+                    data: [
+                        { name: '火山引擎', value: 95, category: 'AI与云计算', itemStyle: { color: '#667eea' } },
+                        { name: 'Seedance 2.0', value: 90, category: 'AI视频生成', itemStyle: { color: '#764ba2' } },
+                        { name: '宇树科技', value: 92, category: '机器人', itemStyle: { color: '#f5576c' } },
+                        { name: '魔法原子', value: 85, category: '机器人', itemStyle: { color: '#f093fb' } },
+                        { name: '银河通用', value: 80, category: '具身智能', itemStyle: { color: '#4facfe' } },
+                        { name: '松延动力', value: 78, category: '机器人', itemStyle: { color: '#00f2fe' } },
+                        { name: '洲明科技', value: 93, category: 'XR显示', itemStyle: { color: '#43e97b' } },
+                        { name: '华为', value: 88, category: '终端设备', itemStyle: { color: '#38f9d7' } },
+                        { name: '中科曙光', value: 85, category: '算力基础设施', itemStyle: { color: '#fa709a' } },
+                        { name: '追觅科技', value: 75, category: '智能生态', itemStyle: { color: '#fee140' } }
+                    ]
+                }]
+            });
+
+            // 6. 上市公司合作分布
+            const listedChart = echarts.init(document.getElementById('listedChart'));
+            listedChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'item' },
+                legend: { orient: 'vertical', right: 10, top: 'center', textStyle: { color: '#778da9' } },
+                series: [{
+                    type: 'pie',
+                    radius: ['30%', '60%'],
+                    center: ['40%', '50%'],
+                    itemStyle: {
+                        borderRadius: 8,
+                        borderColor: '#1b263b',
+                        borderWidth: 2
+                    },
+                    label: { show: true, color: '#e0e1dd' },
+                    data: [
+                        { value: 3, name: '白酒企业', itemStyle: { color: '#667eea' } },
+                        { value: 2, name: '汽车企业', itemStyle: { color: '#f5576c' } },
+                        { value: 2, name: '互联网平台', itemStyle: { color: '#4facfe' } },
+                        { value: 1, name: '零售企业', itemStyle: { color: '#43e97b' } }
+                    ]
+                }]
+            });
+
+            // 7. AI+文娱市场规模预测
+            const aiMarketChart = echarts.init(document.getElementById('aiMarketChart'));
+            aiMarketChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                xAxis: {
+                    type: 'category',
+                    data: ['AI视频生成', 'AI音乐生成', 'AI剧本创作'],
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '市场规模（亿元）',
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: [
+                        { value: 150, itemStyle: { color: '#667eea' } },
+                        { value: 50, itemStyle: { color: '#f5576c' } },
+                        { value: 30, itemStyle: { color: '#4facfe' } }
+                    ],
+                    barWidth: '50%',
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: '{c}亿元',
+                        color: '#e0e1dd'
+                    },
+                    itemStyle: { borderRadius: [8, 8, 0, 0] }
+                }]
+            });
+
+            // 8. 沉浸式体验产业市场规模
+            const immersiveChart = echarts.init(document.getElementById('immersiveChart'));
+            immersiveChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                xAxis: {
+                    type: 'category',
+                    data: ['沉浸式演艺', '剧本杀/密室', 'VR/AR体验'],
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '市场规模（亿元）',
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: [
+                        { value: 500, itemStyle: { color: '#43e97b' } },
+                        { value: 300, itemStyle: { color: '#38f9d7' } },
+                        { value: 200, itemStyle: { color: '#4facfe' } }
+                    ],
+                    barWidth: '50%',
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: '{c}亿元',
+                        color: '#e0e1dd'
+                    },
+                    itemStyle: { borderRadius: [8, 8, 0, 0] }
+                }]
+            });
+
+            // 9. AI+文旅融合应用场景
+            const aiTravelChart = echarts.init(document.getElementById('aiTravelChart'));
+            aiTravelChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['智能导游', '内容创作', '运营管理'], textStyle: { color: '#778da9' } },
+                radar: {
+                    center: ['50%', '55%'], // 将雷达图中心略微下移，避开顶部的 Legend
+                    radius: '60%', // 缩小雷达图半径给文字留出空间
+                    indicator: [
+                        { name: '游客体验提升', max: 100 },
+                        { name: '创作门槛降低', max: 100 },
+                        { name: '运营效率提升', max: 100 },
+                        { name: '成本节约', max: 100 },
+                        { name: '技术成熟度', max: 100 }
+                    ],
+                    axisName: {
+                        color: '#e0e1dd',
+                        fontSize: 13,
+                        formatter: function (value) {
+                            // 可选：如果文字还是太长，可以在这里实现折行功能
+                            return value;
+                        }
+                    },
+                    nameGap: 15, // 标签与雷达图顶点的间距
+                    splitArea: {
+                        areaStyle: {
+                            color: ['rgba(102, 126, 234, 0.05)', 'rgba(102, 126, 234, 0.1)']
+                        }
+                    },
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
+                },
+                series: [{
+                    type: 'radar',
+                    data: [
+                        {
+                            value: [90, 60, 70, 75, 85],
+                            name: '智能导游',
+                            areaStyle: { color: 'rgba(102, 126, 234, 0.3)' },
+                            lineStyle: { color: '#667eea' }
+                        },
+                        {
+                            value: [70, 95, 65, 80, 88],
+                            name: '内容创作',
+                            areaStyle: { color: 'rgba(245, 87, 108, 0.3)' },
+                            lineStyle: { color: '#f5576c' }
+                        },
+                        {
+                            value: [75, 55, 95, 90, 82],
+                            name: '运营管理',
+                            areaStyle: { color: 'rgba(79, 172, 254, 0.3)' },
+                            lineStyle: { color: '#4facfe' }
+                        }
+                    ]
+                }]
+            });
+
+            // 10. 战略目标与关键指标
+            const strategyChart = echarts.init(document.getElementById('strategyChart'));
+            strategyChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['投资预算', '营收目标'], textStyle: { color: '#778da9' } },
+                xAxis: {
+                    type: 'category',
+                    data: ['短期(1年)', '中期(2-3年)', '长期(3-5年)'],
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '金额（万元）',
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [
+                    {
+                        name: '投资预算',
+                        type: 'bar',
+                        data: [650, 6500, 35000],
+                        itemStyle: { color: '#667eea', borderRadius: [8, 8, 0, 0] }
+                    },
+                    {
+                        name: '营收目标',
+                        type: 'line',
+                        data: [0, 5000, 100000],
+                        itemStyle: { color: '#43e97b' },
+                        lineStyle: { width: 3 },
+                        symbol: 'circle',
+                        symbolSize: 10
+                    }
+                ]
+            });
+
+            // 11. 可行性综合评估
+            const feasibilityChart = echarts.init(document.getElementById('feasibilityChart'));
+            feasibilityChart.setOption({
+                ...chartTheme,
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                xAxis: {
+                    type: 'category',
+                    data: ['战略可行性', '技术可行性', '市场可行性', '财务可行性', '资源可行性'],
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: { color: '#e0e1dd' }
+                },
+                yAxis: {
+                    type: 'value',
+                    max: 5,
+                    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                    axisLabel: {
+                        color: '#e0e1dd',
+                        formatter: function (value) {
+                            return '★'.repeat(value);
+                        }
+                    },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: [
+                        { value: 5, itemStyle: { color: '#43e97b' } },
+                        { value: 4, itemStyle: { color: '#4facfe' } },
+                        { value: 4, itemStyle: { color: '#4facfe' } },
+                        { value: 3, itemStyle: { color: '#ffa726' } },
+                        { value: 4, itemStyle: { color: '#4facfe' } }
+                    ],
+                    barWidth: '50%',
+                    label: {
+                        show: true,
+                        position: 'top',
+                        formatter: function (params) {
+                            return '★'.repeat(params.value);
+                        },
+                        color: '#e0e1dd'
+                    },
+                    itemStyle: { borderRadius: [8, 8, 0, 0] }
+                }]
+            });
+
+            // 响应式图表
+            window.addEventListener('resize', () => {
+                techRadarChart.resize();
+                aiChart.resize();
+                robotChart.resize();
+                xrChart.resize();
+                companyChart.resize();
+                listedChart.resize();
+                aiMarketChart.resize();
+                immersiveChart.resize();
+                aiTravelChart.resize();
+                strategyChart.resize();
+                feasibilityChart.resize();
+            });
+
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        } // End of echarts check
+    </script>
+</body>
+
+</html>
